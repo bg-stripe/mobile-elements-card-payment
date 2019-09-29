@@ -38,7 +38,8 @@ app.post("/create-payment-intent", async (req, res) => {
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
-    currency: currency
+    currency: currency,
+    use_stripe_sdk: true
   });
 
   // Send public key and PaymentIntent details to client
