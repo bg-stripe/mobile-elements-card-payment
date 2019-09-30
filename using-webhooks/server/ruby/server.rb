@@ -31,7 +31,8 @@ post '/create-payment-intent' do
   # Create a PaymentIntent with the order amount and currency
   payment_intent = Stripe::PaymentIntent.create(
     amount: calculate_order_amount(data['items']),
-    currency: data['currency']
+    currency: data['currency'],
+    use_stripe_sdk: true
   )
 
   # Send public key and PaymentIntent details to client

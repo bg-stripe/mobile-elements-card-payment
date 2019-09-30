@@ -72,7 +72,9 @@ public class Server {
 
             CreatePaymentBody postBody = gson.fromJson(request.body(), CreatePaymentBody.class);
             PaymentIntentCreateParams createParams = new PaymentIntentCreateParams.Builder()
-                    .setCurrency(postBody.getCurrency()).setAmount(new Long(calculateOrderAmount(postBody.getItems())))
+                    .setCurrency(postBody.getCurrency())
+                    .setAmount(new Long(calculateOrderAmount(postBody.getItems())))
+                    .setUseStripeSdk(true)
                     .build();
             // Create a PaymentIntent with the order amount and currency
             PaymentIntent intent = PaymentIntent.create(createParams);
